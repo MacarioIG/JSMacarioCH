@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font-styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,200;1,400&display=swap"
+        rel="stylesheet">
+    <!-- icons styles -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+  />
+    <!-- css-stlyes -->
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <p class="logo__1">HENS</p>
+                <p class="logo__2">HOTEL</p>
+            </div>
+            <div>
+                <ul class="ul-list">
+                    <a href="">
+                        <li>Home</li>
+                    </a>
+                    <a href="">
+                        <li>Booking</li>
+                    </a>
+                    <a href="">
+                        <li>About us</li>
+                    </a>
+                    <a href="">
+                        <li>Contact us</li>
+                    </a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="welcome">
+        <div class="welcome__btn"></div>
+    </div>
+    <!-- Booking section -->
+    <section class="booking">
+        <div class="booking__bkg"></div>
+        <div class="booking__container">
+            <h3>BOOKING</h3>
+            <div class="booking__container__options">
+                <p>Introduce your arrival date </p>
+                <input type="date" name="" id="arrivalDate" min="" title="Select an arrival date please">
+                <span id="arrivalvalidation" class="required">*Select an arrival date please.</span>
+                <p>Introduce your departure date</p>
+                <input type="date" name="" id="departureDate">
+                <span id ="departurevalidation" class="required">*Select a departure date please.</span>
+                <div class="booking__container__options__select">
+                    <p>ADULTS</p>
+                    <select class="booking__container__options__select__div"id="adultsNumber" name="adultsNumber">
+                        <option value="0"></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <div class="booking__container__options__select" id="childrenContainer" >
+                    <p>CHILDREN</p>
+                    <select class="booking__container__options__select__div" id="childrenNumber" name="childrenNumber">
+                    </select>
+                </div>
+                <span id="peoplevalidation" class="required">*Select a valid number of people for booking.</span>
+                <button id="booking-btn" class="bookBtn">BOOK NOW!</button>
+            </div>
+        </div>
+    </section>
+    <div id="items"></div> <!-- ROOM'S CONTAINER -->
+    <section class="finalbill">
+        <div class="finalbill__container">
+            <div class="finalbill__container__header">
+              <h3>HENS<span>HOTEL</span</h3>
+            </div>
+            <p class="finalbill__container__title">BOOKING DETAILS</p>
+            <div class="finalbill__container__div" id="detail-container"></div> <!-- DETAIL OF PRODUCTS -->
+        </div>
+        <div class="finalbill__overlay"></div>
+    </section>
+
+    <!-- ROOM'S TEMPLATE -->
+    <template id="template-room">
+        <div class="rooms">
+            <div class="rooms__item">
+                <div class="rooms__item__img"></div>
+                <div class="rooms__item__specs">
+                    <div class="rooms__item__specs__container">
+                        <div class="rooms__item__specs__container__info">
+                            <h3>REGULAR ROOM</h3>
+                            <p class="rooms__item__specs__container__info__p"></p>
+                        </div>
+                        <div class="rooms__item__specs__container__precio">
+                            <p><span></span>$USD / DAY</p>
+                        </div>
+                    </div>
+                    <div class="rooms__item__specs__grid">
+                        <img class="serviceImg1" alt="">
+                        <p class="serviceDesc1"></p>
+                        <img class="serviceImg2" alt="">
+                        <p class="serviceDesc2"></p>
+                        <img class="serviceImg3" alt="">
+                        <p class="serviceDesc3"></p>
+                        <img class="serviceImg4" alt="">
+                        <p class="serviceDesc4"></p>
+                    </div>
+                    <button class="bookBtn--shop">BOOK!</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- PRODUCTS DETAILS -->
+    <template id="template-products">
+        <div class="finalbill__container__div__details">
+            <h3>ROOM NAME:</h3>
+            <p id="roomName"></p>
+            <h3>ROOM PRICE:</h3>
+            <p id="roomPrice"></p>
+            <h3>Days of stay:</h3>
+            <p id="daysOfStay"></p>
+            <h3>TOTAL($USD)</h3>
+            <p id="total"></p>
+        </div>
+        <div class="finalbill__container__div__grid">
+            <div class="finalbill__container__div__grid__title">ARRIVAL</div>
+            <div class="finalbill__container__div__grid__title">DEPARTURE</div>
+            <div class="finalbill__container__div__grid__div">
+                <P>CHECK IN</P>
+                <P class="finalbill__container__div__grid__div__num" id="checkInDay">23</P>
+                <P id="checkInMonth">June</P>
+            </div>
+            <div class="finalbill__container__div__grid__div--borderleft">
+                <P>CHECK OUT</P>
+                <P class="finalbill__container__div__grid__div__num" id="checkOutDay">25</P>
+                <P id="checkOutMonth">June</P>
+            </div>
+        </div>
+    </template>
+    <!-- js script -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/luxon.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
