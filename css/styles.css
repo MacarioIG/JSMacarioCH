@@ -211,6 +211,7 @@ nav {
     height: 100vh;
     width: 100%; }
   .finalbill__container {
+    padding-bottom: 3vh;
     width: 80%;
     height: 90vh;
     display: flex;
@@ -250,6 +251,9 @@ nav {
       display: flex;
       justify-content: center; }
       .finalbill__container__div__details h3 {
+        margin: 0;
+        padding: 0; }
+      .finalbill__container__div__details p {
         margin: 0;
         padding: 0; }
       .finalbill__container__div__details {

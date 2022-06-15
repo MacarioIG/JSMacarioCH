@@ -1,15 +1,9 @@
+//SETTING LUXON LIBRARY
 
-const products = [
-];
-
-//validaciones connstantes 
 const DateTime = luxon.DateTime;
 const Interval = luxon.Interval;
 
-const dt = DateTime.now()
-
-console.log(dt)
-
+//validaciones connstantes 
 const PEOPLE_VALIDATION = document.getElementById('peoplevalidation')
 const ARRIVAL_INPUT = document.getElementById('arrivalDate')
 const DEPARTURE_INPUT = document.getElementById('departureDate')
@@ -27,6 +21,7 @@ const carrito = []
 const ROOMS_CONTAINER = document.querySelector('#items')
 const DETAILS_PRODUCTS = document.querySelector('#detail-container')
 
+//Renderization of select options 
 
 const RENDER_OPTION = (s1, s2) => {
 
@@ -59,22 +54,26 @@ const RENDER_OPTION = (s1, s2) => {
     }
 }
 
+//CHECK RENDERIZATION
+
 let renderDetails = (products) => {
 
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
-
-    getLongMonthName = function(date) {
-    return monthNames[date.getMonth()];
-    }
-    console.log( getLongMonthName() );
     const ARRIVAL_DATE = DateTime.fromISO(ARRIVAL_INPUT.value)
     const DEPARTURE_DATE = DateTime.fromISO(DEPARTURE_INPUT.value)
-    const BOOKING_DAYS = Interval.fromDateTimes(ARRIVAL_DATE, DEPARTURE_DATE);
-    console.log(BOOKING_DAYS.length('days'));
-    console.log(ARRIVAL_DATE)
-    console.log( getLongMonthName(ARRIVAL_DATE));
+    let BOOKING_DAYS = Interval.fromDateTimes(ARRIVAL_DATE, DEPARTURE_DATE);
+
+    const StringMonth = (date) => {
+        
+        let month = date.toLocaleString(DateTime.DATE_FULL)
+        let name = month.split(" ")
+        let nameString =  name[0]
+        return nameString
+
+    }
+
+    const MONTH_ARRIVAL_NAME = StringMonth(ARRIVAL_DATE)
+    const MONTH_DEPARTURE_NAME =StringMonth(DEPARTURE_DATE)
+   
     const details = document.querySelector('.finalbill');
     details.style.display = 'flex';
 
@@ -83,26 +82,45 @@ let renderDetails = (products) => {
 
 
     for (const product of products) {
+
+       
         template.querySelector('#daysOfStay').textContent = BOOKING_DAYS.length('days')
         template.querySelector('#roomName').textContent = product.name
         template.querySelector('#roomPrice').textContent = product.price;
         template.querySelector('#total').textContent = product.price * parseInt(BOOKING_DAYS.length('days'))
         template.querySelector('#checkInDay').textContent = ARRIVAL_DATE.day
         template.querySelector('#checkOutDay').textContent = DEPARTURE_DATE.day
-        /* template.querySelector('#checkinMonth').textContent = ARRIVAL_DATE.month
-        template.querySelector('#checkOutMonth').textContent = DEPARTURE_DATE.month
- */
+        template.querySelector('#checkInMonth').textContent = MONTH_ARRIVAL_NAME
+        template.querySelector('#checkOutMonth').textContent = MONTH_DEPARTURE_NAME
+        
+        if (BOOKING_DAYS.length('days') === 0){
 
+            template.querySelector('#daysOfStay').textContent = 1
+            template.querySelector('#total').textContent = product.price
+
+        }
         const clone = template.cloneNode(true)
         fragment.appendChild(clone)
 
     }
 
-
-
     DETAILS_PRODUCTS.appendChild(fragment)
 
+    const PAYMENT_BUTTON = document.querySelector('#payment-btn')
+    PAYMENT_BUTTON.addEventListener('click', () => {
+
+        swal.fire({
+            title: "HENS HOTEL", 
+            text: "Thanks for trusting us!", 
+            icon: 'success',
+            type: "success"
+        }).then(function(){ 
+        location.reload();
+        });
+    })
 }
+
+//ROOM RENDER FUNCTION (1 ROOM EACH)
 
 let templateRender = (rooms) => {
 
@@ -149,6 +167,7 @@ let templateRender = (rooms) => {
     })
 }
 
+//ROOMS FILTER WITH ROOMS RENDERIZATIONS
 
 let renderRooms = (roomArray) => {
 
@@ -211,6 +230,8 @@ adultsSelector.addEventListener("change", () => {
     
 });
 
+// INPUTS VALIDATIONS
+
 
 bookingBtn.addEventListener("click", () => {
     
@@ -246,29 +267,6 @@ INPUT_VALIDATION(ARRIVAL_INPUT, ARRIVAL_SPAN)
 INPUT_VALIDATION(DEPARTURE_INPUT, DEPARTURE_SPAN) 
 
 
- /*  ARRIVAL_INPUT.addEventListener("change", () => {
-    
-    
-    if ((ARRIVAL_INPUT.value ) !== "" ){
-
-        ARRIVAL_SPAN.style.display = 'none'
-
-    }
-
-}) 
-
-DEPARTURE_INPUT.addEventListener("change", () => {
-    
-    
-    if ((ARRIVAL_INPUT.value ) !== "" ){
-
-        DEPARTURE_SPAN.style.display = 'none'
-
-    }
-
-})  
-
- */
 
 
 
