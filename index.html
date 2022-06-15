@@ -10,11 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,200;1,400&display=swap"
         rel="stylesheet">
-    <!-- icons styles -->
+    <!-- css animations -->
     <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
+    <!-- iconos -->
+    <script src="https://kit.fontawesome.com/ab62f17059.js" crossorigin="anonymous"></script>
     <!-- css-stlyes -->
     <link rel="stylesheet" href="/css/styles.css">
     
@@ -47,10 +49,13 @@
         </nav>
     </header>
     <div class="welcome">
-        <div class="welcome__btn"></div>
+        <h3 class="welcome__title animate__fadeInDown">WELCOME</h3>
+        <div class="bookBtn--welcome"><a href="#bookingdiv">START BOOKING</a></div>
+        <div class="welcome__overlay"></div>
+        <div class="welcome__overlay--bot"></div>
     </div>
     <!-- Booking section -->
-    <section class="booking">
+    <section class="booking" id="bookingdiv">
         <div class="booking__bkg"></div>
         <div class="booking__container">
             <h3>BOOKING</h3>
@@ -79,7 +84,7 @@
                     </select>
                 </div>
                 <span id="peoplevalidation" class="required">*Select a valid number of people for booking.</span>
-                <button id="booking-btn" class="bookBtn">BOOK NOW!</button>
+                <div id="booking-btn" class="bookBtn"><a id="itemsLink">BOOK NOW!</a></div>
             </div>
         </div>
     </section>
@@ -95,8 +100,17 @@
         </div>
         <div class="finalbill__overlay"></div>
     </section>
-    <footer>
-        <h4>HENS HOTEL</h4>
+    <footer class="footer">
+        <div class="footer__info">
+            <h4>HENS HOTEL</h4>
+            <p>email: hensbooking@gmail.com</p>
+            <p>tel: +54 2983505317</p>
+        </div>
+        <div class="footer__social">
+            <i class="footer__social__icon fab fa-instagram"></i>
+            <i class="footer__social__icon fab fa-whatsapp"></i>
+            <i class="footer__social__icon fab fa-facebook"></i>
+        </div>  
     </footer>
 
     <!-- ROOM'S TEMPLATE -->
@@ -158,6 +172,7 @@
         </div>
     </template>
     <!-- js script -->
+    <script src="https://kit.fontawesome.com/ab62f17059.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/luxon.js"></script>
     <script src="js/script.js"></script>

@@ -92,7 +92,7 @@ let renderDetails = (products) => {
         template.querySelector('#checkOutDay').textContent = DEPARTURE_DATE.day
         template.querySelector('#checkInMonth').textContent = MONTH_ARRIVAL_NAME
         template.querySelector('#checkOutMonth').textContent = MONTH_DEPARTURE_NAME
-        
+
         if (BOOKING_DAYS.length('days') === 0){
 
             template.querySelector('#daysOfStay').textContent = 1
@@ -171,16 +171,9 @@ let templateRender = (rooms) => {
 
 let renderRooms = (roomArray) => {
 
-    const SERVICES = roomArray.filter((service) => service.clasificacion.includes('servicio'))
-    console.log(SERVICES)
-
     peopleAmount = parseInt(adultsSelector.value) + parseInt(childrenSelector.value);
-    
-    if (adultsSelector.value == 0) {
 
-        PEOPLE_VALIDATION.style.display = 'block'
-
-    }
+    console.log(peopleAmount)
 
     if (  peopleAmount < 3) {
 
@@ -235,7 +228,13 @@ adultsSelector.addEventListener("change", () => {
 
 bookingBtn.addEventListener("click", () => {
     
-    
+
+    if (adultsSelector.value == 0) {
+
+        PEOPLE_VALIDATION.style.display = 'block'
+       
+    }
+
     if ((ARRIVAL_INPUT.value && DEPARTURE_INPUT.value) === "" ){
         
         ARRIVAL_SPAN.style.display = 'block'
@@ -243,7 +242,14 @@ bookingBtn.addEventListener("click", () => {
         
     } else if ((ARRIVAL_INPUT.value && DEPARTURE_INPUT.value) !== ""){
         
+        
         FETCH_DATA()
+        const ITEM_DIV = document.querySelector('#items');
+        ITEM_DIV.classList.display = 'block'
+        setTimeout(function(){
+            const itemslink = document.querySelector('#itemsLink');
+            itemslink.href = '#items'
+        }, 500);
     }
     
      
